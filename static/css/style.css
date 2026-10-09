@@ -1,0 +1,37 @@
+/* Base styles for all paragraphs */
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Level two headers in Maryland red with an underline bar */
+h2 {
+    color: #990000;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 2px solid #990000;
+}
+
+/* Table borders with a border color */
+table, th, td {
+    border: 2px solid #990000;
+    border-collapse: collapse;
+    padding: 6px;
+}
+
+/* Third paragraph, selected by its id */
+p#closing {
+    font-style: italic;
+    color: #555555;
+}
+
+/* Class rule applied to the main heading */
+.highlight {
+    color: #990000;
+}
+
+/* Logo size, applied only to img tags with the logo class */
+img.logo {
+    width: 300px;
+    height: 75px;
+}
