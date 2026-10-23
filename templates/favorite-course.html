@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_title %}Favorite Course{% endblock %}
+
+{% block page_head %}My Favorite Course{% endblock %}
+
+{% block page_content %}
+    {# Read the two query parameters passed in the URL #}
+    {% set subject = request.args.get('subject') %}
+    {% set course_number = request.args.get('course_number') %}
+
+    {% if subject and course_number %}
+        <div class="alert alert-success" role="alert">
+            You entered your favorite course as: {{ subject }} {{ course_number }}
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No course was entered. Add it to the URL, for example:
+            <code>/favorite-course?subject=BMGT&amp;course_number=407</code>
+        </div>
+    {% endif %}
+{% endblock %}

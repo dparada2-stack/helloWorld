@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block page_title %}Contact{% endblock %}
+
+{% block page_head %}Contact Me{% endblock %}
+
+{% block page_content %}
+    {% if form_submitted %}
+        {# Thank-you view: repeat back what the user entered #}
+        <div class="row g-3">
+            <div class="col-12">
+                <h2>Thank you for completing my form!</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold mb-1">First Name:</p>
+                <p>{{ request.form.get('first_name') }}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold mb-1">Last Name:</p>
+                <p>{{ request.form.get('last_name') }}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold mb-1">Email:</p>
+                <p>{{ request.form.get('email') }}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold mb-1">Reason for Contact:</p>
+                <p>{{ request.form.get('reason') }}</p>
+            </div>
+            <div class="col-12">
+                <p class="fw-bold mb-1">Message:</p>
+                <p>{{ request.form.get('message') }}</p>
+            </div>
+            <div class="col-12">
+                <p class="fw-bold mb-1">Agree to Be Contacted:</p>
+                <p>{{ 'Yes' if request.form.get('agree_check') else 'No' }}</p>
+            </div>
+            <div class="col-12">
+                <a href="{{ url_for('contact') }}" class="btn btn-outline-danger">Complete form again</a>
+            </div>
+        </div>
+    {% else %}
+        {# Form view: shown until the form is submitted #}
+        <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+            <div class="col-md-6">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="col-md-6">
+                <label for="reason" class="form-label">Reason for Contact</label>
+                <select class="form-select" id="reason" name="reason" required>
+                    <option value="" selected disabled>Choose a reason...</option>
+                    <option value="Internship or Job Opportunity">Internship or Job Opportunity</option>
+                    <option value="Class Project">Class Project</option>
+                    <option value="Networking">Networking</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agree_check" name="agree_check">
+                    <label class="form-check-label" for="agree_check">I agree to be contacted</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-danger">Submit Form</button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
